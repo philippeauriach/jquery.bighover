@@ -5,7 +5,7 @@
 	"keywords":[
 		"big", "hover", "image", "zoom"
 	],
-	"version":"0.1",
+	"version":"0.0.1",
 	"author":{
 		"name":"Philippe Auriach",
 		"email":"p.auriach@gmail.com",
@@ -20,5 +20,8 @@
 	"bugs":"https://github.com/philippeauriach/jquery.bighover/issues",
 	"homepage":"https://github.com/philippeauriach/jquery.bighover",
 	"docs":"https://github.com/philippeauriach/jquery.bighover",
-	"download":"https://github.com/philippeauriach/jquery.bighover/archive/master.zip"
+	"download":"https://github.com/philippeauriach/jquery.bighover/archive/master.zip",
+	"dependencies":{ 
+		"jquery":">=1.5"
+	}
 }
