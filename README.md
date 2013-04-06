@@ -15,7 +15,10 @@ jQuery plugin for showing a bigger view of the hovered image. The image will be 
 
 ## How to use it
 In order to make an image “bighoverable”, just add the source of the plugin, link it in your page's header, and then add this little line of code:
+```javascript
 $('#myImageID').bighover();
-
+```
 If you want to specify more options, just do like the following (for now you can only pass width and height values, default to 300):
+```javascript
 $('#myImageID').bighover({"width":"200", "height":"200"});
+```
