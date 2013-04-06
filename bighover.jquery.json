@@ -1,7 +1,7 @@
 {
 	"name":"bighover",
 	"title":"jQuery Bighover",
-	"description":"jQuery plugin for showing a bigger view of the hovered image.",
+	"description":"jQuery plugin for showing a bigger view of the hovered image. The image will be displayed beside the cursor. For now, the image is displayed to the bottom right of the cursor, but doesn't get out of the screen. The plugin is configurable with two options : width and height of the big size image.",
 	"keywords":[
 		"big", "hover", "image", "zoom"
 	],
