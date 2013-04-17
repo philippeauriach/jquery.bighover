@@ -18,49 +18,166 @@ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTI
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-(function( $ ){
-	$.fn.bighover = function( options ) {
+(function($) {
+//
+// plugin definition
+//
+$.fn.bighover = function(options) {
+	// build main options before element iteration
+	var opts = $.extend({}, $.fn.bighover.defaults, options);
+	// iterate and reformat each matched element
+	return this.each(function() {
+		//$this = $(this);
+		// build element specific options
+		var o = $.meta ? $.extend({}, opts, $(this).data('bighover')) : opts;
 
-		var $this = $(this);
-		var data = $this.data('bighover');
-		var settings = $.extend( {
-			'width'		: 300,
-			'height'	: 300
-		}, options);
+		$(this).unbind('mouseenter mousemove mouseleave');
 
-		$this.mousemove(function(e){
-			var windowHeight = $(window).height();
-			var bestX = e.pageX+10;
-			var bestY = e.pageY+10;
-			if((bestY+settings['height'])>windowHeight){
-				bestY = windowHeight-settings['height'];
+		$(this).hover(function(){
+			//mouse enter image
+			if(typeof o.originalHeight === 'undefined' || o.originalWidth === 'undefined'){
+				o.originalHeight = o.height;
+				o.originalWidth = o.width;
 			}
-			$('#bighoverImage').css({
-				left	: bestX+'px',
-				top		: bestY+'px'
-			});
-		});
 
-		//do the stuff here
-		$this.unbind('mouseenter mouseleave');
-		return this.hover(
-			//called when mouse enter the element
-			function(){
-				$("body").after($('<img />')
-					.attr('src', this.src)
-					.attr('id', 'bighoverImage')
-					.css({
-						width		: settings['width']+'px',
-						height		: settings['height']+'px',
-						position	: 'fixed',
-						bottom		: '10px',
-						left		: '350px',
-						'z-index'	: 99		
-					}));
-			},
-			function(){
-			//called when mouse qui the element
+			$("body").after($('<img />').attr('src', $(this).attr('src')).attr('id', 'bighoverImage'));
+
+				//define css based on o
+				var width = o.width;
+				var height = o.height;
+				if(width=='auto' && height=='auto'){
+
+				}else{
+					if(width != 'auto'){
+						width = width+"px";
+					}
+					if(height != 'auto'){
+						height = height + "px";
+					}
+				}
+
+				$('#bighoverImage').css({
+					width		: width,
+					height		: height,
+					position	: 'fixed',
+					'z-index'	: 99
+				});
+			}, function(){
+			//mouse leave image, so remove the zoomed one
 			$('#bighoverImage').remove();
 		});
-	};
-})( jQuery );
+
+		$(this).mousemove(function(e){
+			//called when the mouse move
+
+			//get original defined width, in case they move after
+			if(o.originalHeight=='auto'){
+				o.originalHeight = $('#bighoverImage').height();
+			}
+			if(o.originalWidth=='auto'){
+				o.originalWidth = $('#bighoverImage').width();
+			}
+
+			var originalHeight = o.originalHeight;
+			var originalWidth = o.originalWidth;
+			var imageHeight = $('#bighoverImage').height();
+			var imageWidth = $('#bighoverImage').width();
+			var windowHeight = $(window).height();
+			var windowWidth = $(window).width();
+
+			if(o.position=='right'){
+				var bestX = e.pageX+15;
+				var bestY = e.pageY-(imageHeight/2);
+				
+				$('#bighoverImage').css({
+					left	: bestX+'px',
+					top		: bestY+'px',
+					right 	: 'auto',
+					bottom 	: 'auto'
+				});
+			}else if(o.position=='top-right'){
+				var bestX = e.pageX+15;
+				var bestY = windowHeight-e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: bestX+'px',
+					top		: 'auto',
+					right 	: 'auto',
+					bottom 	: bestY+'px'
+				});
+			}else if(o.position=='top'){
+				var bestX = e.pageX-(imageWidth/2);
+				var bestY = windowHeight-e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: bestX+'px',
+					top		: 'auto',
+					right 	: 'auto',
+					bottom 	: bestY+'px'
+				});
+			}else if(o.position=='top-left'){
+				var bestX = windowWidth-e.pageX+15;
+				var bestY = windowHeight-e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: 'auto',
+					top		: 'auto',
+					right 	: bestX+'px',
+					bottom 	: bestY+'px'
+				});
+			}else if(o.position=='left'){
+				var bestX = windowWidth-e.pageX+15;
+				var bestY = e.pageY-(imageHeight/2);
+				
+				$('#bighoverImage').css({
+					left	: 'auto',
+					top		: bestY+'px',
+					right 	: bestX+'px',
+					bottom 	: 'auto'
+				});
+			}else if(o.position=='bottom-left'){
+				var bestX = windowWidth-e.pageX+15;
+				var bestY = e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: 'auto',
+					top		: bestY+'px',
+					right 	: bestX+'px',
+					bottom 	: 'auto'
+				});
+			}else if(o.position=='bottom'){
+				var bestX = e.pageX-(imageWidth/2);
+				var bestY = e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: bestX+'px',
+					top		: bestY+'px',
+					right 	: 'auto',
+					bottom 	: 'auto'
+				});
+			}else{  //default : bottom-right
+				var bestX = e.pageX+15;
+				var bestY = e.pageY+15;
+				
+				$('#bighoverImage').css({
+					left	: bestX+'px',
+					top		: bestY+'px',
+					right 	: 'auto',
+					bottom 	: 'auto'
+				});
+			}
+		});
+});
+};
+
+//
+// plugin defaults
+//
+$.fn.bighover.defaults = {
+	width: 'auto',
+	height: 'auto',
+	position: 'bottom-right',
+	resizeAuto: true
+};
+
+})(jQuery);

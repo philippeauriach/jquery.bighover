@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+ <HEAD>
+  <TITLE>bighover demo</TITLE>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.bighover.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="demo_contents/style.css">
+</HEAD>
+<BODY>
+  <h1>bighover demo</h1>
+</br></br></br>
+<img id="bh-1" class="bh-image" src="demo_contents/images/1.jpg">
+<img id="bh-2" class="bh-image" src="demo_contents/images/2.jpg">
+<img id="bh-3" class="bh-image" src="demo_contents/images/3.jpg"></br>
+<img id="bh-4" class="bh-image" src="demo_contents/images/4.jpg">
+<img id="bh-5" class="bh-image" src="demo_contents/images/5.jpg">
+<img id="bh-6" class="bh-image" src="demo_contents/images/6.jpg"></br>
+<img id="bh-7" class="bh-image" src="demo_contents/images/7.jpg">
+<img id="bh-8" class="bh-image" src="demo_contents/images/8.jpg">
+<img id="bh-9" class="bh-image" src="demo_contents/images/9.jpg">
+</BODY>
+</HTML>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    //chaging position, possible values are : 'right', 'top-right', 'top', 'top-left', 'left', 'bottom-left', 'bottom', and 'bottom-right' (default to 'bottom-right')
+    $('#bh-1').bighover();
+
+    $('#bh-2').bighover({
+      position: 'right'
+    });
+
+    //specifyng height
+    $('#bh-3').bighover({
+      height: '250',
+      position: 'top-right'
+    });
+    //specifying width
+    $('#bh-4').bighover({
+      width: '450',
+      position: 'top'
+    });
+
+    $('#bh-5').bighover({
+      height: '250',
+      position: 'top-left'
+    });
+
+    $('#bh-6').bighover({
+      height: '250',
+      position: 'left'
+    });
+
+    $('#bh-7').bighover({
+      height: '250',
+      position: 'bottom-left'
+    });
+
+    $('#bh-8').bighover({
+      height: '250',
+      position: 'bottom'
+    });
+
+    $('#bh-9').bighover();
+});
+</script>
