@@ -6,9 +6,9 @@ jQuery plugin for showing a bigger view of the hovered image. The image will be 
 - [x] possibility of specifying height and width of the zoomed image
 - [x] zoomed image showed on the bottom-right side of the cursor
 - [x] option to choose where the zoomed image is displayed (left, top, right, bottom of the cursor)
+- [x] create the doc, with example
 
 ## TO-DO
-- [ ] create the doc, with example
 - [ ] automate zoomed image size
 - [ ] prevent image for going offscreen
 
