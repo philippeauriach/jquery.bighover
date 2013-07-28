@@ -69,6 +69,7 @@ $.fn.bighover = function(options) {
 
 		$(this).mousemove(function(e){
 			//called when the mouse move
+			console.log(e.pageY-$(window).scrollTop());
 
 			//get original defined width, in case they move after
 			if(o.originalHeight=='auto'){
@@ -87,7 +88,7 @@ $.fn.bighover = function(options) {
 
 			if(o.position=='right'){
 				var bestX = e.pageX+15;
-				var bestY = e.pageY-(imageHeight/2);
+				var bestY = e.pageY-(imageHeight/2) -$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: bestX+'px',
@@ -97,7 +98,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='top-right'){
 				var bestX = e.pageX+15;
-				var bestY = windowHeight-e.pageY+15;
+				var bestY = windowHeight-e.pageY+15 +$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: bestX+'px',
@@ -107,7 +108,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='top'){
 				var bestX = e.pageX-(imageWidth/2);
-				var bestY = windowHeight-e.pageY+15;
+				var bestY = windowHeight-e.pageY+15 +$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: bestX+'px',
@@ -117,7 +118,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='top-left'){
 				var bestX = windowWidth-e.pageX+15;
-				var bestY = windowHeight-e.pageY+15;
+				var bestY = windowHeight-e.pageY+15 +$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: 'auto',
@@ -127,7 +128,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='left'){
 				var bestX = windowWidth-e.pageX+15;
-				var bestY = e.pageY-(imageHeight/2);
+				var bestY = e.pageY-(imageHeight/2) -$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: 'auto',
@@ -137,7 +138,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='bottom-left'){
 				var bestX = windowWidth-e.pageX+15;
-				var bestY = e.pageY+15;
+				var bestY = e.pageY+15 -$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: 'auto',
@@ -147,7 +148,7 @@ $.fn.bighover = function(options) {
 				});
 			}else if(o.position=='bottom'){
 				var bestX = e.pageX-(imageWidth/2);
-				var bestY = e.pageY+15;
+				var bestY = e.pageY+15 -$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: bestX+'px',
@@ -157,7 +158,7 @@ $.fn.bighover = function(options) {
 				});
 			}else{  //default : bottom-right
 				var bestX = e.pageX+15;
-				var bestY = e.pageY+15;
+				var bestY = e.pageY+15 -$(window).scrollTop();
 				
 				$('#bighoverImage').css({
 					left	: bestX+'px',
