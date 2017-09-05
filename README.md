@@ -2,8 +2,6 @@
 
 jQuery plugin for showing a bigger view of the hovered image. The image will be displayed beside the cursor. For now, the image is displayed to the bottom right of the cursor, but doesn't get out of the screen. The plugin is configurable with two options : width and height of the big size image.
 
-See the demo page : http://philippeauriach.me/project.php?name=bighover
-
 ## Implemented functionalities
 - [x] possibility of specifying height and width of the zoomed image
 - [x] zoomed image showed on the bottom-right side of the cursor
